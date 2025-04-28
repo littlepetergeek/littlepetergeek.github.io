@@ -1,102 +1,357 @@
-# Site settings
-title: LittleGEEK
-SEOTitle: 小及的博客 | LittleGEEK
-header-img: img/home-bg.jpg
-email: littlepetergeek@gmail.com
-description: "欢迎来到小及的世界！这里是AI+教育和训练G地！"
-keyword: "小及, LittleGEEK, Peter, AIGC训练营, peterGEEK, @LittleGEEK, 小及的博客, 人工智能, AI, AIGC"
-url: "https://littlepetergeek.github.io/" # your host, for absolute URL
-baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
-
-# Publish posts or collection documents with a future date.
-future: true
-
-# SNS settings
-RSS: false
-weibo_username: Peter小皮特AIGC
-zhihu_username: Peter小皮特AIGC
-github_username: Peter小皮特AIGC
-twitter_username: Peter小皮特AIGC
-#facebook_username:  Peter小皮特AIGC
-#linkedin_username:  firstname-lastname-idxxxx
-
-# Build settings
-# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
-highlighter: rouge
-permalink: pretty
-paginate: 10
-exclude:
-  [
-    "less",
-    "node_modules",
-    "Gruntfile.js",
-    "package.json",
-    "README.md",
-    "README.zh.md",
-  ]
-anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
-# If you have timezone issue (e.g. #68) in China, uncomment to use this:
-#timezone: CN
-
-# Gems
-# from PR#40, to support local preview for Jekyll 3.0
-# make sure you have this gem installed
-# `$ gem install jekyll-paginate`
-plugins: [jekyll-paginate]
-
-# Markdown settings
-# replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
-markdown: kramdown
-kramdown:
-  input: GFM # use Github Flavored Markdown !important
-  syntax_highlighter_opts:
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
-
-# Disqus settings
-disqus_username: hux
-
-# Netease settings
-netease_comment: false
-
-# Analytics settings
-# Baidu Analytics
-# ba_track_id: [your track id]
-
-# Google Analytics
-ga_track_id: "UA-49627206-1" # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
-
-# Sidebar settings
-sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "要做一个有 swag 的程序员 <br> React Team @ Meta"
-sidebar-avatar: https://github.com/Huxpro.png # use absolute URL, seeing it's used in both `/` and `/about/`
-
-# Featured Tags
-featured-tags: true # whether or not using Feature-Tags
-featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
-
-# Progressive Web Apps
-chrome-tab-theme-color: "#000000"
-service-worker: true
-
-# MathJax rendering for layout:page (e.g. post preview)
-page-mathjax: false
-
-# Friends
-friends:
-  [
-    { title: "乱序（Midare）", href: "http://mida.re/" },
-    { title: "Ebn Zhang", href: "https://ebnbin.dev/" },
-    { title: "Kun Qian", href: "http://kunq.me" },
-    { title: "Sherry Woo", href: "https://sherrywoo.me/" },
-    { title: "SmdCn", href: "http://blog.smdcn.net" },
-    { title: "JiyinYiyong", href: "http://tiye.me/" },
-    { title: "DHong Say", href: "http://dhong.co" },
-    { title: "尹峰以为", href: "http://ingf.github.io/" },
-  ]
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LittleGEEK - AIGC+ EDU Community</title>
+    <style>
+        :root {
+            --brand-green: #73D4A7;
+            --brand-gray: #393D46;
+            --brand-white: #FFFFFF;
+            --dark-bg: #393D46;
+            --card-bg: #2D3038;
+            --text-light: #F5F5F5;
+            --text-muted: #CCCCCC;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-light);
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--brand-green);
+            color: var(--dark-bg);
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: var(--dark-bg);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--brand-green);
+            margin-top: 0;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--brand-white);
+        }
+        
+        p {
+            color: var(--text-muted);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background-color: var(--dark-bg);
+        }
+        
+        .section {
+            padding: 60px 0;
+            background-color: var(--dark-bg);
+        }
+        
+        .section-gray {
+            background-color: var(--card-bg);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            color: var(--text-light);
+        }
+        
+        .pricing-table th, .pricing-table td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .pricing-table th {
+            background-color: var(--brand-green);
+            color: var(--dark-bg);
+            font-weight: bold;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        .pricing-table tr:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .cta {
+            background-color: var(--brand-green);
+            color: var(--dark-bg);
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-bg);
+            color: var(--brand-white);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--brand-white);
+            color: var(--dark-bg);
+        }
+        
+        .btn-green {
+            background-color: var(--dark-bg);
+            color: var(--brand-white);
+        }
+        
+        .btn-green:hover {
+            background-color: var(--brand-white);
+            color: var(--dark-bg);
+        }
+        
+        footer {
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--brand-green);
+        }
+        
+        ul {
+            columns: 2;
+            list-style-position: inside;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            ul {
+                columns: 1;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>欢迎来到</h1>
+            <h1>小及的世界</h1>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>LittleGEEK</h2>
+            <h3>AIGC+EDU Community</h3>
+            <p>AI+教育和训练G地</p>
+         
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2>小小助力 By AIGC</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>《AIGC+训练营》</h3>
+                    <p>成为超级个体，成就超级组织</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>《及易青少年AIGC》</h3>
+                    <p>培养AG时代的未来人才</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>《AIGC通用办公》</h3>
+                    <p>AIGC办公新范式</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>"AI+"集成解决方案</h3>
+                    <p>开启AI数智化新征程</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>AI Agent 订制</h3>
+                    <p>你的专属"AI打工仔"</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 40px; color: var(--brand-green);">Technology empowering all walks of life</p>
+        </div>
+    </section>
+    
+    <section class="section section-gray">
+        <div class="container">
+            <h2>什么是"AIGC+"训练营</h2>
+            <h3>《"AIGC+"训练营》</h3>
+            <p>是一个集AI通识+应用+开发的系统学习项目，旨在运用AIGC工作新范式，提升工作效率和创作力；</p>
+            <p>从AI文/图/音/视频多模态内容生成，AI知识库/智能体创建，到AI分身训练，结合真实业务场景，完成可落地的项目作品；</p>
+            <p>适合有意识提升内容生产力的个人和组织，旨在帮助他们成为"超级个体""超级组织"；</p>
+            <p style="text-align: center; margin-top: 40px; color: var(--brand-green);">Technology empowering all walks of life</p>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2>《"AIGC+"训练营》</h2>
+            <p>项目制组队学习，通过主流的生成式AI，解决业务问题；成为超级个体，成就超级组织，通过AI迅速打破能力边界；</p>
+            <h3>我们为什么要"AI"</h3>
+        </div>
+    </section>
+    
+    <section class="section section-gray">
+        <div class="container">
+            <h2>解决以下业务问题</h2>
+            <ul>
+                <li>高效生成文本/脚本</li>
+                <li>生成海报/插图/分镜脚本</li>
+                <li>生成绘本/影视动画/广告片</li>
+                <li>高效生成PPT/图表/图文/交互页</li>
+                <li>制作数字化课件</li>
+                <li>打造个人/企业数字IP</li>
+                <li>高效运营短视频</li>
+                <li>创建问答机器人</li>
+                <li>创建AI Agent接管工作</li>
+                <li>创建AI客服/销售/助教/新媒体</li>
+                <li>升级业务/产品/工作流</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2>数字IP订阅计划</h2>
+            <table class="pricing-table">
+                <tr>
+                    <th></th>
+                    <th>基础计划</th>
+                    <th>标准计划</th>
+                    <th>数字达人</th>
+                </tr>
+                <tr>
+                    <td>季度订购费用</td>
+                    <td>3680/月</td>
+                    <td>3980/月</td>
+                    <td>6280/月</td>
+                </tr>
+                <tr>
+                    <td>年度订购费用</td>
+                    <td>3580/月</td>
+                    <td>3880/月</td>
+                    <td>6080/月</td>
+                </tr>
+                <tr>
+                    <td>私有化知识库</td>
+                    <td>-</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>问答机器人部署</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>H5/网页/二维码</td>
+                </tr>
+                <tr>
+                    <td>内容策划</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>IP定位</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2 style="color: var(--dark-bg);">现在，获取你的"AI+"计划！</h2>
+            <a href="#" class="btn btn-green">立即加入</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="logo">LittleGEEK</div>
+            <p>We're here to help you</p>
+            <p>+86 13917941802</p>
+            <p>cigc@littlegeek.work</p>
+        </div>
+    </footer>
+</body>
+</html>
